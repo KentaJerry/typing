@@ -33,4 +33,4 @@ npm-debug.log
 /assets/node_modules/
 
 # config
-config/
+config/dev.exs
