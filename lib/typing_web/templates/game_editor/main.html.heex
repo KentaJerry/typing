@@ -1,5 +1,6 @@
-<div>
-    <button phx-window-keyup="toggle_input_key">a</button>
-    <%# <button phx-window-keyup="b">b</button>
-    <button phx-window-keyup="c">c</button> %>
+<p><%= @input_key %></p>
+<div
+    phx-window-blur="page-inactive"
+    phx-window-focus="page-active"
+    phx-window-keyup="toggle_input_key">  
 </div>
