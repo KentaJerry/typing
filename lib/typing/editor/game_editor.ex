@@ -1,5 +1,6 @@
 defmodule Typing.Editor.GameEditor do
   import Typing.Utils.KeysDecision
+  alias Typing.Utils.Execution
 
   defstruct input_char: "",
             display_char: "",
@@ -8,7 +9,8 @@ defmodule Typing.Editor.GameEditor do
             failure_count: 0,
             game_status: 0,
             char_list: [],
-            clear_count: 0
+            clear_count: 0,
+            result: nil
 
   def construct() do
     char_list = [
@@ -53,7 +55,7 @@ defmodule Typing.Editor.GameEditor do
       when key not in @exclusion_key and key_check(char, count, key) and editor.game_status == 1 do
     cond do
       editor.now_char_count == editor.char_count - 1 ->
-        %{editor | display_char: "クリア", input_char: editor.input_char <> key, game_status: 0}
+        display_result(editor, key)
 
       true ->
         %{
@@ -98,5 +100,16 @@ defmodule Typing.Editor.GameEditor do
             clear_count: editor.clear_count + 1
         }
     end
+  end
+
+  defp display_result(editor, key) do
+    {result, _} = Execution.execution(editor.display_char)
+
+    %{
+      editor
+      | result: result,
+        input_char: editor.input_char <> key,
+        clear_count: editor.clear_count + 1
+    }
   end
 end

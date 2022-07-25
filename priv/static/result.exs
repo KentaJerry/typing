@@ -1,0 +1,1 @@
+Enum.map([1, 2, 3], fn a -> a * 2 end)
