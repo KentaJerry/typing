@@ -1,12 +1,13 @@
 defmodule TypingWeb.GameEditorLive do
   use Phoenix.LiveView
+  alias Typing.Editor.GameEditor
 
   def render(assigns), do: TypingWeb.GameEditorView.render(assigns.template, assigns)
 
   def mount(_params, _session, socket) do
     socket =
       socket
-      |>assign(:input_key, "")
+      |>assign(:editor, GameEditor.construct())
       |>assign(:page_title, "タイピングゲーム")
       |>assign(:template, "main.html")
 
