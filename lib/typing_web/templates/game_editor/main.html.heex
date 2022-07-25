@@ -1,7 +1,8 @@
 <h2><%= @editor.display_char %></h2>
 <h2>あなたの入力:<%= @editor.input_char %></h2>
+<p>ミスした回数:<%= @editor.failure_count %></p>
 <div
     phx-window-blur="page-inactive"
     phx-window-focus="page-active"
-    phx-window-keyup="toggle_input_key">  
+    phx-window-keyup="toggle_input_key"> 
 </div>
