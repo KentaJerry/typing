@@ -18,7 +18,7 @@ defmodule TypingWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    
+
     live "/game", GameEditorLive, :index
   end
 

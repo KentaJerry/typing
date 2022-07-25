@@ -7,18 +7,19 @@ defmodule TypingWeb.GameEditorLive do
   def mount(_params, _session, socket) do
     socket =
       socket
-      |>assign(:editor, GameEditor.construct())
-      |>assign(:page_title, "タイピングゲーム")
-      |>assign(:template, "main.html")
+      |> assign(:editor, GameEditor.construct())
+      |> assign(:page_title, "タイピングゲーム")
+      |> assign(:template, "main.html")
 
     {:ok, socket}
   end
 
   def handle_event("toggle_" <> event, params, socket) do
-   socket =
-    update(socket, :editor, fn editor ->
-      GameEditor.update(editor, event, params)
-    end)
+    socket =
+      update(socket, :editor, fn editor ->
+        GameEditor.update(editor, event, params)
+      end)
+
     {:noreply, socket}
   end
 end
