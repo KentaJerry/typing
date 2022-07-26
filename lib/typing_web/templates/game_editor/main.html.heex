@@ -12,6 +12,9 @@
 <h2><%= if @editor.result, do: inspect(@editor.result), else: "" %></h2>
 <h2>あなたの入力:<%= @editor.input_char %></h2>
 <p>ミスした回数:<%= @editor.failure_count %></p>
+<%= if @editor.game_status == 2 do %>
+<h1>Enter押してください</h1>
+<% end %>
 <div
     phx-window-blur="page-inactive"
     phx-window-focus="page-active"

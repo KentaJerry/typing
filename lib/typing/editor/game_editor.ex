@@ -71,6 +71,11 @@ defmodule Typing.Editor.GameEditor do
     %{editor | failure_count: editor.failure_count + 1}
   end
 
+  def update(%__MODULE__{} = editor, "input_key", %{"key" => key})
+      when key == "Enter" and editor.game_status == 2 do
+        next_char(editor, key)
+      end
+
   def update(%__MODULE__{} = editor, "input_key", _params), do: editor
 
   defp next_char(editor, key) do
@@ -84,7 +89,8 @@ defmodule Typing.Editor.GameEditor do
             display_char: "クリア",
             input_char: editor.input_char,
             game_status: 0,
-            clear_count: editor.clear_count + 1
+            clear_count: editor.clear_count + 1,
+            result: nil
         }
 
       _num ->
@@ -97,7 +103,9 @@ defmodule Typing.Editor.GameEditor do
             input_char: "",
             char_count: String.length(display_char),
             now_char_count: 0,
-            clear_count: editor.clear_count + 1
+            clear_count: editor.clear_count + 1,
+            game_status: 1,
+            result: nil
         }
     end
   end
@@ -108,6 +116,7 @@ defmodule Typing.Editor.GameEditor do
     %{
       editor
       | result: result,
+        game_status: 2,
         input_char: editor.input_char <> key,
         clear_count: editor.clear_count + 1
     }
