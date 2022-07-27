@@ -1,0 +1,30 @@
+<h2>結果</h2>
+
+<%= if @editor.timer > 0 do %>
+  <h3>経過時間</h3>
+  <h3><%= @editor.timer %></h3>
+<% end %>
+
+<h3>クリアした回数</h3>
+<h3><%= @editor.clear_count %>回</h3>
+
+<h3>ミスした回数</h3>
+<h3><%= @editor.failure_counts %>回</h3>
+
+<h3>入力した内容</h3>
+
+<%= for result <- @editor.results do %>
+  <h3>お題:<%= result.diplay_char %></h3>
+  <h3>結果:<%= inspect(result.result) %></h3>
+  <h3>入力にかかった時間:<%= result.time %>秒</h3>
+  <h3>ミスした回数</h3>
+  <h3><%= result.failure_count %>回</h3>
+  <hr>
+<% end %>
+
+<h3>入力した内容</h3>
+
+<boutton phx-click="toggle_select_mode" phx-value-mode="">
+選択画面に戻る
+</boutton>
+

@@ -6,4 +6,12 @@ defmodule TypingWeb.GameEditorView do
   end
 
   def trem_display_char(editor), do: editor.display_char
+
+  def get_timer_title(editor) do
+    case editor.mode do
+      :training -> "経過時間"
+      :game -> "残り時間"
+      _ ->""
+    end
+  end
 end
